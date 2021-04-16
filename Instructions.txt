@@ -1,6 +1,0 @@
-git clone https://github.com/TacheRadu/Morse
-cd Morse/
-git checkout Stan_Andrei
-git add .
-git commit -m "Modification v1.0"
-git push
