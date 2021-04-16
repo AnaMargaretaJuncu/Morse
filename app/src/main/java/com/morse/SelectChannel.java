@@ -61,6 +61,7 @@ public class SelectChannel extends AppCompatActivity {
                 if (position ==  2) {
                     Toast.makeText(SelectChannel.this, "You selected a channel. " + mTitle[2], Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
         // so item click is done now check list view
