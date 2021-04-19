@@ -49,7 +49,8 @@ public class SmsContact extends AppCompatActivity implements Contact {
                         cursor.getColumnIndexOrThrow("address"));
 
                 if (currentAddress.equals(fromAddress)) {
-                    MessageInfo currentMessage = new MessageInfo(cursor.getString(cursor.getColumnIndexOrThrow("person")),
+                    MessageInfo currentMessage = new MessageInfo(cursor.getString(cursor.getColumnIndexOrThrow("_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("person")),
                             cursor.getString(cursor.getColumnIndexOrThrow("address")),
                             cursor.getString(cursor.getColumnIndexOrThrow("body")),
                             cursor.getString(cursor.getColumnIndexOrThrow("date")),
@@ -62,6 +63,40 @@ public class SmsContact extends AppCompatActivity implements Contact {
         }
 
         return messages;
+    }
+
+    public MessageInfo getLastMessage(String fromAddress){
+
+        if (context == null)
+            throw new NullPointerException();
+
+        MessageInfo lastMessage = null;
+
+        Cursor cursor = context.getContentResolver()
+                .query(Uri.parse("content://sms"), null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                String currentAddress = cursor.getString(
+                        cursor.getColumnIndexOrThrow("address"));
+
+                if (currentAddress.equals(fromAddress)) {
+                    lastMessage = new MessageInfo(cursor.getString(cursor.getColumnIndexOrThrow("_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("person")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("address")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("body")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("date")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("seen")));
+
+                    break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+
+        return lastMessage;
+
     }
 
 }

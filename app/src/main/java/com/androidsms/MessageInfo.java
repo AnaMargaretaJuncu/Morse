@@ -1,6 +1,9 @@
 package com.androidsms;
 
 public class MessageInfo {
+
+    private final String id;
+
     private final String person;
 
     private final String phoneNumber;
@@ -11,7 +14,8 @@ public class MessageInfo {
 
     private final String seen;
 
-    public MessageInfo(String person, String phoneNumber, String messageText, String date, String seen) {
+    public MessageInfo(String id, String person, String phoneNumber, String messageText, String date, String seen) {
+        this.id = id;
         this.person = person;
         this.phoneNumber = phoneNumber;
         this.messageText = messageText;
@@ -22,12 +26,12 @@ public class MessageInfo {
     @Override
     public String toString() {
         return "MessageInfo{" +
-                "person='" + person + '\'' +
+                "id='" + id + '\'' +
+                ", person='" + person + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", messageText='" + messageText + '\'' +
                 ", date='" + date + '\'' +
                 ", seen='" + seen + '\'' +
                 '}';
     }
-
 }

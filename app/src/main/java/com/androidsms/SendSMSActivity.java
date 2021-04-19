@@ -29,11 +29,14 @@ public class SendSMSActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.SEND_SMS) ==
                         PackageManager.PERMISSION_GRANTED) {
-                    String phoneNumber = number.getText().toString().trim();
-                    String smsMessage = message.getText().toString().trim();
-                    SmsMessage messenger = new SmsMessage(this, phoneNumber, smsMessage);
+//                    String phoneNumber = number.getText().toString().trim();
+//                    String smsMessage = message.getText().toString().trim();
+//                    SmsMessage messenger = new SmsMessage(this, phoneNumber, smsMessage);
+//
+//                    messenger.send();
 
-                    messenger.send();
+                    SmsContact smsContact = new SmsContact(this);
+                    System.out.println(smsContact.getLastMessage("0759105277"));
                 } else {
                     requestPermissions(new String[] {Manifest.permission.SEND_SMS}, 1);
                 }
