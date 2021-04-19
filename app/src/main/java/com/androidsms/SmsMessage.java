@@ -1,6 +1,7 @@
 package com.androidsms;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 import android.telephony.SmsManager;
 import android.widget.Toast;
@@ -11,13 +12,19 @@ import com.morse.Message;
 
 public class SmsMessage extends AppCompatActivity implements Message {
     private final Context context;
-    private final String phoneNumber;
-    private final String messageText;
+    private int id;
+    private String phoneNumber;
+    private String messageText;
 
     public SmsMessage(Context context, String phoneNumber, String messageText) {
         this.context = context;
         this.phoneNumber = phoneNumber;
         this.messageText = messageText;
+    }
+
+    public SmsMessage(Context context, int id){
+        this.context = context;
+        this.id = id;
     }
 
     /**
@@ -47,6 +54,22 @@ public class SmsMessage extends AppCompatActivity implements Message {
         (new Handler()).postDelayed(() -> {
             send();
         }, delayedMilliSeconds);
+    }
+
+    /**
+     * @author Peiu Iulian
+     * Delete a message from content://sms/{id}, where id is set from the 2 param constructor
+     */
+    @Override
+    public Boolean delete(){
+
+        try{
+            context.getContentResolver().delete(
+                    Uri.parse("content://sms/" + id), null, null);
+        } catch(Exception exp){
+            return false;
+        }
+        return true;
     }
 
 }

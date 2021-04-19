@@ -65,6 +65,7 @@ public class SmsContact extends AppCompatActivity implements Contact {
         return messages;
     }
 
+    @Override
     public MessageInfo getLastMessage(String fromAddress){
 
         if (context == null)

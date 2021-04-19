@@ -16,6 +16,12 @@ public interface Contact {
     List<MessageInfo> getMessages(String from);
 
     /**
+     * @param from
+     * @return
+     */
+    MessageInfo getLastMessage(String from);
+
+    /**
      *
      */
     void refreshMessageList();
